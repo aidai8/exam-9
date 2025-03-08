@@ -35,10 +35,14 @@ export const fetchOneTransactionById = createAsyncThunk<ApiTransaction, string>(
     }
 );
 
-export const updateTransaction = createAsyncThunk<void, {id: string, transaction: ApiTransaction}>(
-    'transactions/updateTransaction',
-    async ({id, transaction}) => {
-        await axiosApi.put(`transactions/${id}.json`, transaction);
+export const updateTransaction = createAsyncThunk(
+    "transactions/updateTransaction",
+    async (transaction: Transaction) => {
+        const response = await axiosApi.put(
+            `/transactions/${transaction.id}.json`,
+            transaction
+        );
+        return { ...transaction, ...response.data };
     }
 );
 

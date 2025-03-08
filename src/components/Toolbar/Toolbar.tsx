@@ -22,7 +22,7 @@ const Toolbar = () => {
                     </div>
                 </div>
             </nav>
-            <TransactionModal show={showModal} onHide={() => setShowModal(false)} />
+            {showModal && <TransactionModal isOpen={showModal} onClose={() => setShowModal(false)} transaction={{ id: '', amount: 0, category: '', createdAt: '' }} />}
         </>
     );
 };
